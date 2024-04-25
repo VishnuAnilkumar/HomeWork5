@@ -32,6 +32,7 @@ class TestWeatherStation(unittest.TestCase):
 
         # Query the database to check if data is added
         data_count = WeatherData.query.count()
+        print("Data count after adding:", data_count)
         self.assertEqual(data_count, 1)
 
     def test_get_data(self):
@@ -54,6 +55,7 @@ class TestWeatherStation(unittest.TestCase):
 
         # Query the database to retrieve data
         data = WeatherData.query.all()
+        print("Data retrieved from database:", data)
         self.assertEqual(len(data), 2)
 
 if __name__ == '__main__':
