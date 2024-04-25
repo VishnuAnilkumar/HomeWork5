@@ -5,7 +5,7 @@ from models import WeatherData
 class TestWeatherStation(unittest.TestCase):
 
     def setUp(self):
-        # Create a Flask application context
+        # Set up the Flask application context
         self.app_context = app.app_context()
         self.app_context.push()
 
@@ -13,11 +13,11 @@ class TestWeatherStation(unittest.TestCase):
         db.create_all()
 
     def tearDown(self):
-        # Remove the Flask application context
-        self.app_context.pop()
-
         # Drop all database tables
         db.drop_all()
+
+        # Remove the Flask application context
+        self.app_context.pop()
 
     def test_add_data(self):
         # Add sample data to the database
