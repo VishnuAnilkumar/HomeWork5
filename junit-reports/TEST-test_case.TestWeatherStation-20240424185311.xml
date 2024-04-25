@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test_case.TestWeatherStation-20240424185311" tests="2" file="test_case.py" time="0.008" timestamp="2024-04-24T18:53:11" failures="2" errors="0" skipped="0">
+	<testcase classname="test_case.TestWeatherStation" name="test_add_data" time="0.007" timestamp="2024-04-24T18:53:11" file="test_case.py" line="23">
+		<failure type="AssertionError" message="0 != 1"><![CDATA[Traceback (most recent call last):
+  File "/Users/vishnu/Desktop/CMPE131/WeatherApp/test_case.py", line 34, in test_add_data
+    self.assertEqual(len(data), 1)
+AssertionError: 0 != 1
+]]></failure>
+	</testcase>
+	<testcase classname="test_case.TestWeatherStation" name="test_get_data" time="0.001" timestamp="2024-04-24T18:53:11" file="test_case.py" line="39">
+		<failure type="AssertionError" message="'temperature' not found in [2, 25.0, 50.0, 1013.25, '2024-04-25 01:53:11']"><![CDATA[Traceback (most recent call last):
+  File "/Users/vishnu/Desktop/CMPE131/WeatherApp/test_case.py", line 53, in test_get_data
+    self.assertIn('temperature', data[0])
+AssertionError: 'temperature' not found in [2, 25.0, 50.0, 1013.25, '2024-04-25 01:53:11']
+]]></failure>
+	</testcase>
+</testsuite>
