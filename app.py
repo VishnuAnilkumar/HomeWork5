@@ -1,7 +1,10 @@
 from flask import Flask, render_template, request, jsonify
+from flask_sqlalchemy import SQLAlchemy
 import sqlite3
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///weather_data.db'
+db = SQLAlchemy(app)
 
 # SQLite Database Initialization
 conn = sqlite3.connect('weather_data.db', check_same_thread=False)
