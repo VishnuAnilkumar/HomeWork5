@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Station</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Weather Station</h2>
+        <form id="weatherForm">
+            <div class="form-group">
+                <label for="temperature">Temperature (°C):</label>
+                <input type="text" class="form-control" id="temperature" name="temperature" required>
+            </div>
+            <div class="form-group">
+                <label for="humidity">Humidity (%):</label>
+                <input type="text" class="form-control" id="humidity" name="humidity" required>
+            </div>
+            <div class="form-group">
+                <label for="pressure">Pressure (hPa):</label>
+                <input type="text" class="form-control" id="pressure" name="pressure" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <div class="mt-5">
+            <h4>Recent Data:</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Temperature (°C)</th>
+                        <th>Humidity (%)</th>
+                        <th>Pressure (hPa)</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody id="dataBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            // Load recent data when the page loads
+            $.getJSON('/get_data', function (data) {
+                $.each(data, function (key, value) {
+                    $('#dataBody').append('<tr><td>' + value[1] + '</td><td>' + value[2] + '</td><td>' + value[3] + '</td><td>' + value[4] + '</td></tr>');
+                });
+            });
+
+            // Submit form data using AJAX
+            $('#weatherForm').submit(function (event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
+                $.post('/add_data', formData, function (response) {
+                    alert(response);
+                    location.reload(); // Reload page after successful submission
+                });
+            });
+        });
+    </script>
+</body>
+</html>
