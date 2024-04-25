@@ -1,17 +1,22 @@
 import unittest
-import sqlite3
-from app import app, db
+from app import app, db  # Assuming 'app' is your Flask application instance and 'db' is the SQLAlchemy database object
 from models import WeatherData  # Assuming 'WeatherData' is the SQLAlchemy model for weather data
 
 class TestWeatherStation(unittest.TestCase):
 
     def setUp(self):
-        app.config['TESTING'] = True
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
+        # Create a Flask application context
+        self.app_context = app.app_context()
+        self.app_context.push()
+
+        # Create all database tables
         db.create_all()
 
     def tearDown(self):
-        db.session.remove()
+        # Remove the Flask application context
+        self.app_context.pop()
+
+        # Drop all database tables
         db.drop_all()
 
     def test_add_data(self):
@@ -53,4 +58,3 @@ class TestWeatherStation(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
