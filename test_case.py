@@ -1,6 +1,6 @@
 import unittest
 import sqlite3
-from app import app
+from app import app, db
 from models import WeatherData  # Assuming 'WeatherData' is the SQLAlchemy model for weather data
 
 class TestWeatherStation(unittest.TestCase):
