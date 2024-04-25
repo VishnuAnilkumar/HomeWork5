@@ -1,9 +1,6 @@
 import unittest
 import sqlite3
 from app import app
-
-import unittest
-from app import app, db  # Assuming 'app' is your Flask application instance and 'db' is the SQLAlchemy database object
 from models import WeatherData  # Assuming 'WeatherData' is the SQLAlchemy model for weather data
 
 class TestWeatherStation(unittest.TestCase):
